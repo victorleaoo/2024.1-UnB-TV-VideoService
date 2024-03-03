@@ -6,10 +6,12 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 from controller import commentController, scheduleController
-from database import SessionLocal, engine
-from model import commentModel
 
-commentModel.Base.metadata.create_all(bind=engine)
+# Desativado os os comentarios nos videos
+# from database import SessionLocal, engine
+# from model import commentModel
+
+# commentModel.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -23,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 ) 
 
-app.include_router(prefix="/api", router=commentController.comment)
+# app.include_router(prefix="/api", router=commentController.comment)
 app.include_router(prefix="/api", router=scheduleController.schedule)
 
 @app.get("/")
