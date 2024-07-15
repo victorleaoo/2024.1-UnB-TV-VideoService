@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="1.958" timestamp="2024-07-15T13:52:36.899556" hostname="86e2655edb5c"><testcase classname="tests.test_schedule.TestSchedule" name="test_schedule_get_schedule_day" time="0.385"><failure message="AssertionError: assert 10 == 7&#10; +  where 10 = len(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', ...])&#10; +    where ['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', ...] = list(dict_keys(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO']))&#10; +      where dict_keys(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO']) = &lt;built-in method keys of dict object at 0x7f64fcac31c0&gt;()&#10; +        where &lt;built-in method keys of dict object at 0x7f64fcac31c0&gt; = {'': [], '(LOOP / MANHA)': [], '(LOOP / MANHA)    ': [], 'DOMINGO': [{'activity': 'ZAPPING', 'time': '00:00'}, {'activ...ime': '01:30'}, {'activity': 'EXCLUSIVA', 'time': '02:00'}, {'activity': 'INTERPROGRAMAS', 'time': '02:30'}, ...], ...}.keys">self = &lt;tests.test_schedule.TestSchedule object at 0x7f64fd68f880&gt;
+
+    def test_schedule_get_schedule_day(self):
+      response = client.get("/api/schedule/")
+      data = response.json()
+      assert response.status_code == 200
+&gt;     assert len(list(data.keys())) == 7
+E     AssertionError: assert 10 == 7
+E      +  where 10 = len(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', ...])
+E      +    where ['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', ...] = list(dict_keys(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO']))
+E      +      where dict_keys(['SEGUNDA', '', '(LOOP / MANHA)    ', 'TERCA', 'QUARTA', '(LOOP / MANHA)', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO']) = &lt;built-in method keys of dict object at 0x7f64fcac31c0&gt;()
+E      +        where &lt;built-in method keys of dict object at 0x7f64fcac31c0&gt; = {'': [], '(LOOP / MANHA)': [], '(LOOP / MANHA)    ': [], 'DOMINGO': [{'activity': 'ZAPPING', 'time': '00:00'}, {'activ...ime': '01:30'}, {'activity': 'EXCLUSIVA', 'time': '02:00'}, {'activity': 'INTERPROGRAMAS', 'time': '02:30'}, ...], ...}.keys
+
+tests/test_schedule.py:15: AssertionError</failure></testcase><testcase classname="tests.test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day_invalid" time="0.004" /><testcase classname="tests.test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day" time="0.309" /><testcase classname="tests.test_schedule.TestSchedule" name="test_schedule_get_schedule_day_exception_handling" time="0.006" /></testsuite></testsuites>
