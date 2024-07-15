@@ -1,4 +1,4 @@
-# 2023.2-UnB-TV-VideoService
+# UnB-TV VideoService
 
 # Repositórios
 
@@ -6,7 +6,6 @@
 - [Users](https://github.com/fga-eps-mds/2024.1-UnB-TV-Users)
 - [Admin](https://github.com/fga-eps-mds/2024.1-UnB-TV-Admin)
 - [VideoService](https://github.com/fga-eps-mds/2024.1-UnB-TV-VideoService)
-- [Gateway](https://github.com/fga-eps-mds/2024.1-UnB-TV-API-Gateway)
 
 # Acessando o repositório localmente
 
