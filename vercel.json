@@ -4,5 +4,5 @@
   ],
   "routes": [
     { "src": "src/(.*)", "dest": "src/main.py" }
-  ],
+  ]
 }
