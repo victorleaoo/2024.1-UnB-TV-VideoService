@@ -1,22 +1,22 @@
-from datetime import date
-from pydantic import BaseModel, ConfigDict
+# from datetime import date
+# from pydantic import BaseModel, ConfigDict
 
-class CommentUpdate(BaseModel):
-  content: str | None = None
+# class CommentUpdate(BaseModel):
+#   content: str | None = None
 
-class Comment(BaseModel):
-  model_config = ConfigDict(from_attributes = True)
-  id: int
-  user_id: int
-  user_name: str
-  video_id: int
-  content: str
-  created_at: date
+# class Comment(BaseModel):
+#   model_config = ConfigDict(from_attributes = True)
+#   id: int
+#   user_id: int
+#   user_name: str
+#   video_id: int
+#   content: str
+#   created_at: date
 
-class CommentCreate(BaseModel):
-  model_config = ConfigDict(from_attributes = True)
-  user_id: int
-  user_name: str
-  video_id: int
-  content: str 
+# class CommentCreate(BaseModel):
+#   model_config = ConfigDict(from_attributes = True)
+#   user_id: int
+#   user_name: str
+#   video_id: int
+#   content: str 
   
