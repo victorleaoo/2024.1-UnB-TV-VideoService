@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
-from controller import commentController, scheduleController
+from src.controller import scheduleController
 
 # Desativado os os comentarios nos videos
 # from database import SessionLocal, engine
