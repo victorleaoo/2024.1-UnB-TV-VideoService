@@ -1,0 +1,33 @@
+name: Merge Repositories
+
+on: [repository_dispatch]
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    environment: actions
+
+    steps:
+    - name: Checkout fork
+      uses: actions/checkout@v3
+      with:
+        repository: victorleaoo/2024.1-UnB-TV-VideoService
+        ref: develop
+        token: ${{ secrets.API_GITHUB_TOKEN }}
+        fetch-depth: 0
+        
+    - name: Configure Git user
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+
+    - name: Add and fetch upstream
+      run: |
+        git remote add upstream https://github.com/fga-eps-mds/2024.1-UnB-TV-VideoService.git
+        git fetch upstream
+
+    - name: Merge upstream changes
+      run: |
+        git checkout develop
+        git merge upstream/develop --no-ff
+        git push origin develop --force
