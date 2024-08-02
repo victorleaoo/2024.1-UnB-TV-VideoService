@@ -22,3 +22,15 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Importação do modelo WatchLater
+from model.watchLaterModel import WatchLater
+
+
+# Função para inicializar o banco de dados
+def init_db():
+   Base.metadata.create_all(bind=engine)
+
+
+# Inicializa o banco de dados ao importar este módulo
+init_db()
