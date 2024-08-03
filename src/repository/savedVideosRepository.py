@@ -65,3 +65,18 @@ def create_favorite(db: Session, favorite: savedVideosSchema.FavoriteCreate):
     db.refresh(db_favorite)
     return db_favorite
     
+def check_favorite_status(db: Session, video_id: str, user_id: str) -> dict:
+    video_id = video_id.strip()
+    user_id = user_id.strip()
+    favorite_entry = db.query(savedVideosModel.WatchLater).filter(
+        savedVideosModel.WatchLater.user_id == user_id,
+        savedVideosModel.WatchLater.video_id == video_id,
+        savedVideosModel.WatchLater.statusfavorite == True
+    ).first()
+    if favorite_entry:
+        return {
+            "statusfavorite": favorite_entry.statusfavorite
+        }
+    return {
+        "statusfavorite": False
+    }

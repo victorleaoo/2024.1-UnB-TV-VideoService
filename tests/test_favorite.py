@@ -46,3 +46,9 @@ def test_add_to_favorite(setup_database):
     assert response.json()["video_id"] == "video123"
     assert response.json()["statusfavorite"] is True
     
+def test_check_favorite(setup_database):
+    response = client.get("/api/favorite/status/video123?user_id=user123")
+    print(response.json())
+    assert response.status_code == 200
+    assert response.json()["statusfavorite"] is True
+    

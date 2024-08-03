@@ -39,3 +39,8 @@ favorite = APIRouter(
 @favorite.post("/")
 def add_to_favorite(favorite: savedVideosSchema.FavoriteCreate, db: Session = Depends(get_db)):
   return savedVideosRepository.create_favorite(db=db, favorite=favorite)
+  
+@favorite.get("/status/{video_id}")
+def check_favorite(video_id: str, user_id: str = Query(...), db: Session = Depends(get_db)):
+    status = savedVideosRepository.check_favorite_status(db=db, video_id=video_id, user_id=user_id)
+    return status
