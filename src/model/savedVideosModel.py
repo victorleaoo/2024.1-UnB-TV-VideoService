@@ -8,4 +8,5 @@ class WatchLater(Base):
    user_id = Column(String, index=True, nullable=False)
    video_id = Column(String, index=True, nullable=False)
    status = Column(Boolean, default=False) #assistir mais tarde
-     
+   statusfavorite = Column(Boolean, default=False) # favoritos
+  
