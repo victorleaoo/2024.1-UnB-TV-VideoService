@@ -23,10 +23,6 @@ def get_db():
     finally:
         db.close()
 
-# Importação do modelo WatchLater
-from model.watchLaterModel import WatchLater
-
-
 # Função para inicializar o banco de dados
 def init_db():
    Base.metadata.create_all(bind=engine)

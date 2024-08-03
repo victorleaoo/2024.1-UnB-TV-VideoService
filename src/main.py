@@ -9,7 +9,7 @@ from database import init_db  # Adicione a função de inicialização do banco 
 load_dotenv()
 
 from controller import commentController, scheduleController
-from controller.watchLaterController import WatchLater
+from controller.savedVideosController import WatchLater
 
 
 # Desativado os os comentarios nos videos
