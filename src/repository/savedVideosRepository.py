@@ -51,3 +51,17 @@ def check_watch_later_status(db: Session, video_id: str, user_id: str) -> bool:
        return watch_later_entry.status
    print(f"Check Watch Later Status: video_id={video_id}, user_id={user_id}, found=False")
    return False
+
+# início dos métodos do favorite
+    
+def create_favorite(db: Session, favorite: savedVideosSchema.FavoriteCreate):
+    db_favorite = savedVideosModel.WatchLater(
+        user_id = favorite.user_id.strip(),
+        video_id = favorite.video_id.strip(),
+        statusfavorite = True
+    )
+    db.add(db_favorite)
+    db.commit()
+    db.refresh(db_favorite)
+    return db_favorite
+    

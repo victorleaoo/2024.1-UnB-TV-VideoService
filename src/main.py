@@ -8,7 +8,7 @@ from database import init_db  # Adicione a função de inicialização do banco 
 
 load_dotenv()
 
-from controller import commentController, scheduleController
+from controller import commentController, scheduleController, savedVideosController
 from controller.savedVideosController import WatchLater
 
 
@@ -37,6 +37,7 @@ init_db()
 app.include_router(WatchLater, prefix="/api")
 #app.include_router(prefix="/api", router=commentController.comment)
 app.include_router(prefix="/api", router=scheduleController.schedule)
+app.include_router(prefix="/api", router=savedVideosController.favorite)
 
 @app.get("/")
 async def root():

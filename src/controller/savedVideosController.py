@@ -29,3 +29,13 @@ def check_watch_later(video_id: str, user_id: str = Query(...), db: Session = De
    status = savedVideosRepository.check_watch_later_status(db=db, video_id=video_id, user_id=user_id)
    print(f"Status for video_id={video_id}, user_id={user_id} is {status}")
    return {"status": status}
+
+# início das requisições do favorite
+
+favorite = APIRouter(
+  prefix="/favorite"
+)
+
+@favorite.post("/")
+def add_to_favorite(favorite: savedVideosSchema.FavoriteCreate, db: Session = Depends(get_db)):
+  return savedVideosRepository.create_favorite(db=db, favorite=favorite)
