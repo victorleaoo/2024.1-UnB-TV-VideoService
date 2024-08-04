@@ -84,10 +84,10 @@ def remove_favorite(db: Session, video_id: str, user_id: str):
    video_id = video_id.strip()
    user_id = user_id.strip()
    print(f"Removing favorite video_id={video_id} for user_id={user_id}")
-   favorite_entry = db.query(WatchLater).filter(
-       WatchLater.video_id == video_id,
-       WatchLater.user_id == user_id,
-       WatchLater.statusfavorite == True
+   favorite_entry = db.query(savedVideosModel.WatchLater).filter(
+       savedVideosModel.WatchLater.video_id == video_id,
+       savedVideosModel.WatchLater.user_id == user_id,
+       savedVideosModel.WatchLater.statusfavorite == True
    ).first()
    print(f"Query Result: {favorite_entry}")
    if favorite_entry:
