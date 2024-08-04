@@ -44,3 +44,10 @@ def add_to_favorite(favorite: savedVideosSchema.FavoriteCreate, db: Session = De
 def check_favorite(video_id: str, user_id: str = Query(...), db: Session = Depends(get_db)):
     status = savedVideosRepository.check_favorite_status(db=db, video_id=video_id, user_id=user_id)
     return status
+
+@favorite.delete("/{video_id}")
+def remove_from_favorites(video_id: str, user_id: str = Query(...), db: Session = Depends(get_db)):
+   user_id = user_id.strip() 
+   video_id = video_id.strip() 
+   savedVideosRepository.remove_favorite(db=db, video_id=video_id, user_id=user_id)
+   return {"message": "Removed from favorites"}
