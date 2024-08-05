@@ -52,7 +52,7 @@ def test_check_favorite(setup_database):
     assert response.status_code == 200
     assert response.json()["statusfavorite"] is True
 
-"""def test_remove_from_favorites(setup_database):
+def test_remove_from_favorites(setup_database):
     response = client.delete("/api/favorite/video123?user_id=user123")
     print("Response from DELETE:", response.json())
     assert response.status_code == 200
@@ -63,4 +63,4 @@ def test_check_favorite(setup_database):
     response = client.get("/api/favorite/status/video123?user_id=user123")
     print("Response from GET status:", response.json())
     assert response.status_code == 200
-    assert response.json()["statusfavorite"] is False"""
+    assert response.json()["statusfavorite"] is False

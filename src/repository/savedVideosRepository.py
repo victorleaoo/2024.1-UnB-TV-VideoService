@@ -80,6 +80,7 @@ def check_favorite_status(db: Session, video_id: str, user_id: str) -> dict:
     return {
         "statusfavorite": False
     }
+    
 def remove_favorite(db: Session, video_id: str, user_id: str):
    video_id = video_id.strip()
    user_id = user_id.strip()
