@@ -22,3 +22,11 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Função para inicializar o banco de dados
+def init_db():
+   Base.metadata.create_all(bind=engine)
+
+
+# Inicializa o banco de dados ao importar este módulo
+init_db()
