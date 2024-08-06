@@ -2,7 +2,7 @@ import uvicorn, sys
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db  # Adicione a função de inicialização do banco de dados
+from src.database import init_db  # Adicione a função de inicialização do banco de dados
 
 
 
