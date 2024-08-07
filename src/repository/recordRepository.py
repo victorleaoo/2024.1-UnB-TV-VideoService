@@ -12,7 +12,7 @@ def create_record(db: Session, record: recordSchema.RecordCreate):
    db.add(db_record)
    db.commit()
    db.refresh(db_record)
-   print(f"Created record: user_id={db_record.user_id}, videos={db_record.video_id}")
+   print(f"Created record: user_id={db_record.user_id}")
    return db_record
 
 def get_record(db: Session, record: recordSchema.RecordGet):
