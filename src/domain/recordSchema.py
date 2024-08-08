@@ -1,8 +1,9 @@
 from pydantic import BaseModel
+from typing import Dict
 
 class RecordBase(BaseModel):
     user_id: str
-    videos: dict
+    videos: Dict[str, str]
 
 class RecordCreate(RecordBase):
     pass
