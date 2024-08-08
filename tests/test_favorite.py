@@ -64,3 +64,25 @@ def test_remove_from_favorites(setup_database):
     print("Response from GET status:", response.json())
     assert response.status_code == 200
     assert response.json()["statusfavorite"] is False
+
+
+def test_get_favorite_videos():
+    user_id = str(uuid.uuid4())
+
+    # Add multiple videos to the favorite list
+    video_ids = [str(uuid.uuid4()) for _ in range(3)]
+    for video_id in video_ids:
+        client.post("/api/favorite/", json={"user_id": user_id, "video_id": video_id})
+
+    # Retrieve the favorite list
+    response = client.get(f"/api/favorite/?user_id={user_id}")
+    assert response.status_code == 200
+    assert "videoList" in response.json()
+    video_list = response.json()["videoList"]
+
+    # Check if the specific video is in the favorite list
+    retrieved_video_ids = [item["video_id"] for item in video_list]
+    for video_id in video_ids:
+        assert video_id in retrieved_video_ids
+
+
