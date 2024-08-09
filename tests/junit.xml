@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="10" time="2.535" timestamp="2024-08-05T02:33:42.345505" hostname="eb7d7d6cc578"><testcase classname="test_favorite" name="test_add_to_favorite" time="0.044" /><testcase classname="test_favorite" name="test_check_favorite" time="0.007" /><testcase classname="test_favorite" name="test_remove_from_favorites" time="0.012" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day" time="0.842" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day_invalid" time="0.003" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day" time="0.562" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day_exception_handling" time="0.005" /><testcase classname="test_watch_later" name="test_add_to_watch_later" time="0.011" /><testcase classname="test_watch_later" name="test_check_watch_later_status" time="0.006" /><testcase classname="test_watch_later" name="test_remove_from_watch_later" time="0.012" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="12" time="5.208" timestamp="2024-08-09T00:49:45.334769" hostname="5a0db4a21511"><testcase classname="test_favorite" name="test_add_to_favorite" time="0.152" /><testcase classname="test_favorite" name="test_check_favorite" time="0.019" /><testcase classname="test_favorite" name="test_remove_from_favorites" time="0.037"><failure message="assert True is False">setup_database = None
+
+    def test_remove_from_favorites(setup_database):
+        response = client.delete("/api/favorite/video123?user_id=user123")
+        print("Response from DELETE:", response.json())
+        assert response.status_code == 200
+        assert response.json()["message"] == "Removed from favorites"
+    
+    
+       # Check status again to ensure it's removed
+        response = client.get("/api/favorite/status/video123?user_id=user123")
+        print("Response from GET status:", response.json())
+        assert response.status_code == 200
+&gt;       assert response.json()["statusfavorite"] is False
+E       assert True is False
+
+test_favorite.py:66: AssertionError</failure></testcase><testcase classname="test_favorite" name="test_get_favorite_videos" time="0.002"><failure message="NameError: name 'uuid' is not defined">def test_get_favorite_videos():
+&gt;       user_id = str(uuid.uuid4())
+E       NameError: name 'uuid' is not defined
+
+test_favorite.py:70: NameError</failure></testcase><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day" time="0.827" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day_invalid" time="0.007" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day" time="0.764" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day_exception_handling" time="0.013" /><testcase classname="test_watch_later" name="test_add_to_watch_later" time="0.027" /><testcase classname="test_watch_later" name="test_check_watch_later_status" time="0.036" /><testcase classname="test_watch_later" name="test_remove_from_watch_later" time="0.060" /><testcase classname="test_watch_later" name="test_get_watch_later_videos" time="0.065" /></testsuite></testsuites>
