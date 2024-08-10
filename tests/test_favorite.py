@@ -1,5 +1,4 @@
-import pytest, sys, os
-import uuid
+import pytest, sys, os, uuid
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
@@ -40,32 +39,42 @@ def setup_database():
     Base.metadata.drop_all(bind=engine)
 
 
-def test_add_to_favorite(setup_database):
-    response = client.post("/api/favorite/", json={"user_id": "user123", "video_id": "video123"})
+def test_add_to_favorite():
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+    response = client.post("/api/favorite/", json={"user_id": user_id, "video_id": video_id})
     assert response.status_code == 200
-    assert response.json()["user_id"] == "user123"
-    assert response.json()["video_id"] == "video123"
+    assert response.json()["user_id"] == user_id
+    assert response.json()["video_id"] == video_id
     assert response.json()["statusfavorite"] is True
     
-def test_check_favorite(setup_database):
-    response = client.get("/api/favorite/status/video123?user_id=user123")
-    print(response.json())
+def test_check_favorite():
+   user_id = str(uuid.uuid4())
+   video_id = str(uuid.uuid4())
+  
+   client.post("/api/favorite/", json={"user_id": user_id, "video_id": video_id})
+   response = client.get(f"/api/favorite/status/{video_id}?user_id={user_id}")
+   assert response.status_code == 200
+   assert response.json()["statusfavorite"] is True
+
+
+def test_remove_from_favorites():
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+   
+    client.post("/api/favorite/", json={"user_id": user_id, "video_id": video_id})
+   
+    response = client.get(f"/api/favorite/status/{video_id}?user_id={user_id}")
     assert response.status_code == 200
     assert response.json()["statusfavorite"] is True
-
-def test_remove_from_favorites(setup_database):
-    response = client.delete("/api/favorite/video123?user_id=user123")
-    print("Response from DELETE:", response.json())
+   
+    response = client.delete(f"/api/favorite/{video_id}?user_id={user_id}")
     assert response.status_code == 200
     assert response.json()["message"] == "Removed from favorites"
-    
 
-   # Check status again to ensure it's removed
-    response = client.get("/api/favorite/status/video123?user_id=user123")
-    print("Response from GET status:", response.json())
+    response = client.get(f"/api/favorite/status/{video_id}?user_id={user_id}")
     assert response.status_code == 200
     assert response.json()["statusfavorite"] is False
-
 
 def test_get_favorite_videos():
     user_id = str(uuid.uuid4())
@@ -85,5 +94,3 @@ def test_get_favorite_videos():
     retrieved_video_ids = [item["video_id"] for item in video_list]
     for video_id in video_ids:
         assert video_id in retrieved_video_ids
-
-
