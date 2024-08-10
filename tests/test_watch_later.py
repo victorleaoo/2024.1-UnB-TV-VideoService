@@ -1,7 +1,9 @@
-import pytest, sys, os
+import pytest, sys, os, uuid
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+
 
 
 from fastapi.testclient import TestClient
@@ -11,10 +13,14 @@ from src.database import Base, get_db
 from src.main import app
 
 
+
+
 # Crie um banco de dados de teste em memória
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
 
 
 # Dependência para usar o banco de dados de teste
@@ -26,10 +32,16 @@ def override_get_db():
         db.close()
 
 
+
+
 app.dependency_overrides[get_db] = override_get_db
 
 
+
+
 client = TestClient(app)
+
+
 
 
 @pytest.fixture(scope="module")
@@ -39,28 +51,69 @@ def setup_database():
     Base.metadata.drop_all(bind=engine)
 
 
-def test_add_to_watch_later(setup_database):
-    response = client.post("/api/watch-later/", json={"user_id": "user123", "video_id": "video123"})
-    assert response.status_code == 200
-    assert response.json()["user_id"] == "user123"
-    assert response.json()["video_id"] == "video123"
-    assert response.json()["status"] is True
-    
 
 
-def test_check_watch_later_status(setup_database):
-    response = client.get("/api/watch-later/status/video123?user_id=user123")
+def test_add_to_watch_later():
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+   
+    response = client.post("/api/watch-later/", json={"user_id": user_id, "video_id": video_id})
     assert response.status_code == 200
+    assert response.json()["user_id"] == user_id
+    assert response.json()["video_id"] == video_id
     assert response.json()["status"] is True
 
 
-def test_remove_from_watch_later(setup_database):
-    response = client.delete("/api/watch-later/video123?user_id=user123")
+def test_check_watch_later_status():
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+   
+    client.post("/api/watch-later/", json={"user_id": user_id, "video_id": video_id})
+    response = client.get(f"/api/watch-later/status/{video_id}?user_id={user_id}")
+    assert response.status_code == 200
+    assert response.json()["status"] is True
+
+
+def test_remove_from_watch_later():
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+   
+    # Add the video to watch later list
+    client.post("/api/watch-later/", json={"user_id": user_id, "video_id": video_id})
+   
+    # Ensure the video is added
+    response = client.get(f"/api/watch-later/status/{video_id}?user_id={user_id}")
+    assert response.status_code == 200
+    assert response.json()["status"] is True
+   
+    # Remove the video from watch later list
+    response = client.delete(f"/api/watch-later/{video_id}?user_id={user_id}")
     assert response.status_code == 200
     assert response.json()["message"] == "Removed from watch later list"
 
 
     # Check status again to ensure it's removed
-    response = client.get("/api/watch-later/status/video123?user_id=user123")
+    response = client.get(f"/api/watch-later/status/{video_id}?user_id={user_id}")
     assert response.status_code == 200
     assert response.json()["status"] is False
+
+
+def test_get_watch_later_videos():
+    user_id = str(uuid.uuid4())
+   
+    # Add multiple videos to the watch later list
+    video_ids = [str(uuid.uuid4()) for _ in range(3)]
+    for video_id in video_ids:
+        client.post("/api/watch-later/", json={"user_id": user_id, "video_id": video_id})
+
+
+    # Retrieve the watch later list
+    response = client.get(f"/api/watch-later/?user_id={user_id}")
+    assert response.status_code == 200
+    assert "videoList" in response.json()
+    video_list = response.json()["videoList"]
+   
+    # Check if the specific video is in the watch later list
+    retrieved_video_ids = [item["video_id"] for item in video_list]
+    for video_id in video_ids:
+        assert video_id in retrieved_video_ids
