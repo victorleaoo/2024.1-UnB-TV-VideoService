@@ -1,4 +1,5 @@
 import pytest, sys, os
+import uuid
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
