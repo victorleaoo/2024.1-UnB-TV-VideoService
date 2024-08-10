@@ -99,3 +99,10 @@ def remove_favorite(db: Session, video_id: str, user_id: str):
    else:
        raise HTTPException(status_code=404, detail="Video not found in favorites")
 
+def get_favorite_videos(db: Session, user_id: str):
+    user_id = user_id.strip()
+    favorite_entries = db.query(savedVideosModel.WatchLater).filter(
+        savedVideosModel.WatchLater.user_id == user_id,
+        savedVideosModel.WatchLater.statusfavorite == True
+    ).all()
+    return favorite_entries

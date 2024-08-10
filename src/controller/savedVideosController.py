@@ -48,3 +48,8 @@ def remove_from_favorites(video_id: str, user_id: str = Query(...), db: Session 
    video_id = video_id.strip() 
    savedVideosRepository.remove_favorite(db=db, video_id=video_id, user_id=user_id)
    return {"message": "Removed from favorites"}
+
+@favorite.get("/")
+def get_favorite_videos(user_id: str = Query(...), db: Session = Depends(get_db)):
+   videos = savedVideosRepository.get_favorite_videos(db=db, user_id=user_id)
+   return {"videoList": videos}
