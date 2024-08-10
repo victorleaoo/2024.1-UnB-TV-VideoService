@@ -52,6 +52,16 @@ def check_watch_later_status(db: Session, video_id: str, user_id: str) -> bool:
    print(f"Check Watch Later Status: video_id={video_id}, user_id={user_id}, found=False")
    return False
 
+
+def get_watch_later_videos(db: Session, user_id: str):
+    user_id = user_id.strip()
+    watch_later_entries = db.query(savedVideosModel.WatchLater).filter(
+        savedVideosModel.WatchLater.user_id == user_id,
+        savedVideosModel.WatchLater.status == True
+    ).all()
+    return watch_later_entries
+
+
 # início dos métodos do favorite
     
 def create_favorite(db: Session, favorite: savedVideosSchema.FavoriteCreate):
@@ -99,3 +109,10 @@ def remove_favorite(db: Session, video_id: str, user_id: str):
    else:
        raise HTTPException(status_code=404, detail="Video not found in favorites")
 
+def get_favorite_videos(db: Session, user_id: str):
+    user_id = user_id.strip()
+    favorite_entries = db.query(savedVideosModel.WatchLater).filter(
+        savedVideosModel.WatchLater.user_id == user_id,
+        savedVideosModel.WatchLater.statusfavorite == True
+    ).all()
+    return favorite_entries
