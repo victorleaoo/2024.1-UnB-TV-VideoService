@@ -8,7 +8,7 @@ from src.database import init_db  # Adicione a função de inicialização do ba
 
 load_dotenv()
 
-from src.controller import scheduleController, savedVideosController
+from src.controller import scheduleController, savedVideosController, recordController
 from src.controller.savedVideosController import WatchLater
 
 # Desativado os os comentarios nos videos
@@ -37,6 +37,7 @@ app.include_router(WatchLater, prefix="/api")
 #app.include_router(prefix="/api", router=commentController.comment)
 app.include_router(prefix="/api", router=scheduleController.schedule)
 app.include_router(prefix="/api", router=savedVideosController.favorite)
+app.include_router(prefix="/api", router=recordController.Record)
 
 @app.get("/")
 async def root():
