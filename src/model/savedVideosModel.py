@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy import Column, String, Boolean
-from database import Base
+from src.database import Base
 
 class WatchLater(Base):
    __tablename__ = 'watch_later'

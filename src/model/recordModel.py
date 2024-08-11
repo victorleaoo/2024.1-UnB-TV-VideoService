@@ -7,4 +7,3 @@ class Record(Base):
    id = Column(String, primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
    user_id = Column(String, index=True, nullable=False)
    videos = Column(JSON, nullable=False)
-  
