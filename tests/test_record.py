@@ -1,4 +1,4 @@
-import pytest, sys, os
+import pytest, sys, os, uuid
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
@@ -32,10 +32,19 @@ def setup_database():
     Base.metadata.drop_all(bind=engine)
 
 def test_add_to_record(setup_database):
-    response = client.post("/api/record/", json={"user_id": "user123", "videos": {"video_id": "timestamp"}})
+    user_id = str(uuid.uuid4())
+    video_id = str(uuid.uuid4())
+    timestamp = "2024-08-14 12:00:00"
+    
+    response = client.post("/api/record/", json={"user_id": user_id, "videos": {video_id: timestamp}})
     assert response.status_code == 200
-    assert response.json()["user_id"] == "user123"
-    assert response.json()["videos"] == {"video_id": "timestamp"}
+    
+    # Verificar se o vídeo foi adicionado ao histórico
+    response = client.get("/api/record/get_record/", params={"user_id": user_id})
+    assert response.status_code == 200
+    assert "videos" in response.json()
+    assert response.json()["videos"] == {video_id: timestamp}
+
     
 def test_check_record(setup_database):
     response = client.get("/api/record/get_record/", params={"user_id": "user123"})
