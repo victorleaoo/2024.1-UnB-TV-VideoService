@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="14" time="3.833" timestamp="2024-08-18T15:09:51.840992" hostname="683a356c15cd"><testcase classname="test_favorite" name="test_add_to_favorite" time="0.044" /><testcase classname="test_favorite" name="test_check_favorite" time="0.013" /><testcase classname="test_favorite" name="test_remove_from_favorites" time="0.022" /><testcase classname="test_favorite" name="test_get_favorite_videos" time="0.024" /><testcase classname="test_record" name="test_add_to_record" time="0.007"><failure message="sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column record.track_enabled does not exist&#10;LINE 1: ...S record_user_id, record.videos AS record_videos, record.tra...&#10;                                                             ^&#10;&#10;[SQL: SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled &#10;FROM record &#10;WHERE record.user_id = %(user_id_1)s &#10; LIMIT %(param_1)s]&#10;[parameters: {'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4', 'param_1': 1}]&#10;(Background on this error at: https://sqlalche.me/e/20/f405)">self = &lt;sqlalchemy.engine.base.Connection object at 0x7e006e303e80&gt;
-dialect = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006e3113c0&gt;
-statement = &lt;sqlalchemy.dialects.postgresql.base.PGCompiler object at 0x7e006e34d1b0&gt;
-parameters = [{'param_1': 1, 'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4'}]
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="13" time="3.146" timestamp="2024-08-18T15:41:34.376990" hostname="683a356c15cd"><testcase classname="test_favorite" name="test_add_to_favorite" time="0.043" /><testcase classname="test_favorite" name="test_check_favorite" time="0.013" /><testcase classname="test_favorite" name="test_remove_from_favorites" time="0.023" /><testcase classname="test_favorite" name="test_get_favorite_videos" time="0.024" /><testcase classname="test_record" name="test_add_to_record" time="0.007"><failure message="sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column record.track_enabled does not exist&#10;LINE 1: ...S record_user_id, record.videos AS record_videos, record.tra...&#10;                                                             ^&#10;&#10;[SQL: SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled &#10;FROM record &#10;WHERE record.user_id = %(user_id_1)s &#10; LIMIT %(param_1)s]&#10;[parameters: {'user_id_1': '5e7f7b0b-d345-4e42-a16a-45bbbdd19f80', 'param_1': 1}]&#10;(Background on this error at: https://sqlalche.me/e/20/f405)">self = &lt;sqlalchemy.engine.base.Connection object at 0x702fdeb3d000&gt;
+dialect = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x702fe0d43610&gt;
+context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x702fdeb25f00&gt;
+statement = &lt;sqlalchemy.dialects.postgresql.base.PGCompiler object at 0x702fdeb24430&gt;
+parameters = [{'param_1': 1, 'user_id_1': '5e7f7b0b-d345-4e42-a16a-45bbbdd19f80'}]
 
     def _exec_single_context(
         self,
@@ -128,11 +128,11 @@ parameters = [{'param_1': 1, 'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4'
 /usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1969: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-cursor = &lt;cursor object at 0x7e006e7e0d60; closed: -1&gt;
+self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x702fe0d43610&gt;
+cursor = &lt;cursor object at 0x702fdefc4b80; closed: -1&gt;
 statement = 'SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled \nFROM record \nWHERE record.user_id = %(user_id_1)s \n LIMIT %(param_1)s'
-parameters = {'param_1': 1, 'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4'}
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006e3113c0&gt;
+parameters = {'param_1': 1, 'user_id_1': '5e7f7b0b-d345-4e42-a16a-45bbbdd19f80'}
+context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x702fdeb25f00&gt;
 
     def do_execute(self, cursor, statement, parameters, context=None):
 &gt;       cursor.execute(statement, parameters)
@@ -247,11 +247,11 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     self.dialect.do_execute(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-cursor = &lt;cursor object at 0x7e006e7e0d60; closed: -1&gt;
+self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x702fe0d43610&gt;
+cursor = &lt;cursor object at 0x702fdefc4b80; closed: -1&gt;
 statement = 'SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled \nFROM record \nWHERE record.user_id = %(user_id_1)s \n LIMIT %(param_1)s'
-parameters = {'param_1': 1, 'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4'}
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006e3113c0&gt;
+parameters = {'param_1': 1, 'user_id_1': '5e7f7b0b-d345-4e42-a16a-45bbbdd19f80'}
+context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x702fdeb25f00&gt;
 
     def do_execute(self, cursor, statement, parameters, context=None):
 &gt;       cursor.execute(statement, parameters)
@@ -263,273 +263,7 @@ E       [SQL: SELECT record.id AS record_id, record.user_id AS record_user_id, r
 E       FROM record 
 E       WHERE record.user_id = %(user_id_1)s 
 E        LIMIT %(param_1)s]
-E       [parameters: {'user_id_1': '0fb0acc6-3074-422c-8edb-8b80f15cb5b4', 'param_1': 1}]
+E       [parameters: {'user_id_1': '5e7f7b0b-d345-4e42-a16a-45bbbdd19f80', 'param_1': 1}]
 E       (Background on this error at: https://sqlalche.me/e/20/f405)
 
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py:922: ProgrammingError</failure></testcase><testcase classname="test_record" name="test_check_record" time="0.008"><failure message="sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column record.track_enabled does not exist&#10;LINE 1: ...S record_user_id, record.videos AS record_videos, record.tra...&#10;                                                             ^&#10;&#10;[SQL: SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled &#10;FROM record &#10;WHERE record.user_id = %(user_id_1)s &#10; LIMIT %(param_1)s]&#10;[parameters: {'user_id_1': 'user123', 'param_1': 1}]&#10;(Background on this error at: https://sqlalche.me/e/20/f405)">self = &lt;sqlalchemy.engine.base.Connection object at 0x7e006c39d630&gt;
-dialect = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006c39d420&gt;
-statement = &lt;sqlalchemy.dialects.postgresql.base.PGCompiler object at 0x7e006e34d1b0&gt;
-parameters = [{'param_1': 1, 'user_id_1': 'user123'}]
-
-    def _exec_single_context(
-        self,
-        dialect: Dialect,
-        context: ExecutionContext,
-        statement: Union[str, Compiled],
-        parameters: Optional[_AnyMultiExecuteParams],
-    ) -&gt; CursorResult[Any]:
-        """continue the _execute_context() method for a single DBAPI
-        cursor.execute() or cursor.executemany() call.
-    
-        """
-        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
-            generic_setinputsizes = context._prepare_set_input_sizes()
-    
-            if generic_setinputsizes:
-                try:
-                    dialect.do_set_input_sizes(
-                        context.cursor, generic_setinputsizes, context
-                    )
-                except BaseException as e:
-                    self._handle_dbapi_exception(
-                        e, str(statement), parameters, None, context
-                    )
-    
-        cursor, str_statement, parameters = (
-            context.cursor,
-            context.statement,
-            context.parameters,
-        )
-    
-        effective_parameters: Optional[_AnyExecuteParams]
-    
-        if not context.executemany:
-            effective_parameters = parameters[0]
-        else:
-            effective_parameters = parameters
-    
-        if self._has_events or self.engine._has_events:
-            for fn in self.dispatch.before_cursor_execute:
-                str_statement, effective_parameters = fn(
-                    self,
-                    cursor,
-                    str_statement,
-                    effective_parameters,
-                    context,
-                    context.executemany,
-                )
-    
-        if self._echo:
-            self._log_info(str_statement)
-    
-            stats = context._get_cache_stats()
-    
-            if not self.engine.hide_parameters:
-                self._log_info(
-                    "[%s] %r",
-                    stats,
-                    sql_util._repr_params(
-                        effective_parameters,
-                        batches=10,
-                        ismulti=context.executemany,
-                    ),
-                )
-            else:
-                self._log_info(
-                    "[%s] [SQL parameters hidden due to hide_parameters=True]",
-                    stats,
-                )
-    
-        evt_handled: bool = False
-        try:
-            if context.execute_style is ExecuteStyle.EXECUTEMANY:
-                effective_parameters = cast(
-                    "_CoreMultiExecuteParams", effective_parameters
-                )
-                if self.dialect._has_events:
-                    for fn in self.dialect.dispatch.do_executemany:
-                        if fn(
-                            cursor,
-                            str_statement,
-                            effective_parameters,
-                            context,
-                        ):
-                            evt_handled = True
-                            break
-                if not evt_handled:
-                    self.dialect.do_executemany(
-                        cursor,
-                        str_statement,
-                        effective_parameters,
-                        context,
-                    )
-            elif not effective_parameters and context.no_parameters:
-                if self.dialect._has_events:
-                    for fn in self.dialect.dispatch.do_execute_no_params:
-                        if fn(cursor, str_statement, context):
-                            evt_handled = True
-                            break
-                if not evt_handled:
-                    self.dialect.do_execute_no_params(
-                        cursor, str_statement, context
-                    )
-            else:
-                effective_parameters = cast(
-                    "_CoreSingleExecuteParams", effective_parameters
-                )
-                if self.dialect._has_events:
-                    for fn in self.dialect.dispatch.do_execute:
-                        if fn(
-                            cursor,
-                            str_statement,
-                            effective_parameters,
-                            context,
-                        ):
-                            evt_handled = True
-                            break
-                if not evt_handled:
-&gt;                   self.dialect.do_execute(
-                        cursor, str_statement, effective_parameters, context
-                    )
-
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1969: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-cursor = &lt;cursor object at 0x7e006e7e3970; closed: -1&gt;
-statement = 'SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled \nFROM record \nWHERE record.user_id = %(user_id_1)s \n LIMIT %(param_1)s'
-parameters = {'param_1': 1, 'user_id_1': 'user123'}
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006c39d420&gt;
-
-    def do_execute(self, cursor, statement, parameters, context=None):
-&gt;       cursor.execute(statement, parameters)
-E       psycopg2.errors.UndefinedColumn: column record.track_enabled does not exist
-E       LINE 1: ...S record_user_id, record.videos AS record_videos, record.tra...
-E                                                                    ^
-
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py:922: UndefinedColumn
-
-The above exception was the direct cause of the following exception:
-
-setup_database = None
-
-    def test_check_record(setup_database):
-&gt;       response = client.get("/api/record/get_record/", params={"user_id": "user123"})
-
-test_record.py:50: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/usr/local/lib/python3.10/site-packages/starlette/testclient.py:499: in get
-    return super().get(
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:1041: in get
-    return self.request(
-/usr/local/lib/python3.10/site-packages/starlette/testclient.py:465: in request
-    return super().request(
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:814: in request
-    return self.send(request, auth=auth, follow_redirects=follow_redirects)
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:901: in send
-    response = self._send_handling_auth(
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:929: in _send_handling_auth
-    response = self._send_handling_redirects(
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:966: in _send_handling_redirects
-    response = self._send_single_request(request)
-/usr/local/lib/python3.10/site-packages/httpx/_client.py:1002: in _send_single_request
-    response = transport.handle_request(request)
-/usr/local/lib/python3.10/site-packages/starlette/testclient.py:342: in handle_request
-    raise exc
-/usr/local/lib/python3.10/site-packages/starlette/testclient.py:339: in handle_request
-    portal.call(self.app, scope, receive, send)
-/usr/local/lib/python3.10/site-packages/anyio/from_thread.py:277: in call
-    return cast(T_Retval, self.start_task_soon(func, *args).result())
-/usr/local/lib/python3.10/concurrent/futures/_base.py:458: in result
-    return self.__get_result()
-/usr/local/lib/python3.10/concurrent/futures/_base.py:403: in __get_result
-    raise self._exception
-/usr/local/lib/python3.10/site-packages/anyio/from_thread.py:217: in _call_func
-    retval = await retval
-/usr/local/lib/python3.10/site-packages/fastapi/applications.py:1115: in __call__
-    await super().__call__(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/applications.py:122: in __call__
-    await self.middleware_stack(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/middleware/errors.py:184: in __call__
-    raise exc
-/usr/local/lib/python3.10/site-packages/starlette/middleware/errors.py:162: in __call__
-    await self.app(scope, receive, _send)
-/usr/local/lib/python3.10/site-packages/starlette/middleware/cors.py:83: in __call__
-    await self.app(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/middleware/exceptions.py:79: in __call__
-    raise exc
-/usr/local/lib/python3.10/site-packages/starlette/middleware/exceptions.py:68: in __call__
-    await self.app(scope, receive, sender)
-/usr/local/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py:20: in __call__
-    raise e
-/usr/local/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py:17: in __call__
-    await self.app(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/routing.py:718: in __call__
-    await route.handle(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/routing.py:276: in handle
-    await self.app(scope, receive, send)
-/usr/local/lib/python3.10/site-packages/starlette/routing.py:66: in app
-    response = await func(request)
-/usr/local/lib/python3.10/site-packages/fastapi/routing.py:274: in app
-    raw_response = await run_endpoint_function(
-/usr/local/lib/python3.10/site-packages/fastapi/routing.py:193: in run_endpoint_function
-    return await run_in_threadpool(dependant.call, **values)
-/usr/local/lib/python3.10/site-packages/starlette/concurrency.py:41: in run_in_threadpool
-    return await anyio.to_thread.run_sync(func, *args)
-/usr/local/lib/python3.10/site-packages/anyio/to_thread.py:33: in run_sync
-    return await get_asynclib().run_sync_in_worker_thread(
-/usr/local/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:877: in run_sync_in_worker_thread
-    return await future
-/usr/local/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:807: in run
-    result = context.run(func, *args)
-../src/controller/recordController.py:39: in check_record
-    videos = recordRepository.get_record(db=db, record=record)
-../src/repository/recordRepository.py:34: in get_record
-    ).first()
-/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py:2748: in first
-    return self.limit(1)._iter().first()  # type: ignore
-/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py:2847: in _iter
-    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py:2306: in execute
-    return self._execute_internal(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py:2188: in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/context.py:293: in orm_execute_statement
-    result = conn.execute(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1416: in execute
-    return meth(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py:516: in _execute_on_connection
-    return connection._execute_clauseelement(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1639: in _execute_clauseelement
-    ret = self._execute_context(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1848: in _execute_context
-    return self._exec_single_context(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1988: in _exec_single_context
-    self._handle_dbapi_exception(
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:2343: in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py:1969: in _exec_single_context
-    self.dialect.do_execute(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7e0070576980&gt;
-cursor = &lt;cursor object at 0x7e006e7e3970; closed: -1&gt;
-statement = 'SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled \nFROM record \nWHERE record.user_id = %(user_id_1)s \n LIMIT %(param_1)s'
-parameters = {'param_1': 1, 'user_id_1': 'user123'}
-context = &lt;sqlalchemy.dialects.postgresql.psycopg2.PGExecutionContext_psycopg2 object at 0x7e006c39d420&gt;
-
-    def do_execute(self, cursor, statement, parameters, context=None):
-&gt;       cursor.execute(statement, parameters)
-E       sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column record.track_enabled does not exist
-E       LINE 1: ...S record_user_id, record.videos AS record_videos, record.tra...
-E                                                                    ^
-E       
-E       [SQL: SELECT record.id AS record_id, record.user_id AS record_user_id, record.videos AS record_videos, record.track_enabled AS record_track_enabled 
-E       FROM record 
-E       WHERE record.user_id = %(user_id_1)s 
-E        LIMIT %(param_1)s]
-E       [parameters: {'user_id_1': 'user123', 'param_1': 1}]
-E       (Background on this error at: https://sqlalche.me/e/20/f405)
-
-/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py:922: ProgrammingError</failure></testcase><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day" time="0.534" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day_invalid" time="0.003" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day" time="0.422" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day_exception_handling" time="0.005" /><testcase classname="test_watch_later" name="test_add_to_watch_later" time="0.011" /><testcase classname="test_watch_later" name="test_check_watch_later_status" time="0.013" /><testcase classname="test_watch_later" name="test_remove_from_watch_later" time="0.022" /><testcase classname="test_watch_later" name="test_get_watch_later_videos" time="0.023" /></testsuite></testsuites>
+/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py:922: ProgrammingError</failure></testcase><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day" time="0.535" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day_invalid" time="0.003" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_specific_day" time="0.503" /><testcase classname="test_schedule.TestSchedule" name="test_schedule_get_schedule_day_exception_handling" time="0.004" /><testcase classname="test_watch_later" name="test_add_to_watch_later" time="0.012" /><testcase classname="test_watch_later" name="test_check_watch_later_status" time="0.014" /><testcase classname="test_watch_later" name="test_remove_from_watch_later" time="0.022" /><testcase classname="test_watch_later" name="test_get_watch_later_videos" time="0.024" /></testsuite></testsuites>

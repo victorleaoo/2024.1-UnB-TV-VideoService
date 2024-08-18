@@ -34,7 +34,8 @@ def add_to_record(record: recordSchema.RecordCreate, db: Session = Depends(get_d
     return new_record
 
 @Record.get("/get_record")
-def check_record(user_id: str =Query(...) , db: Session = Depends(get_db)):
-   record = recordSchema.RecordGet(user_id =user_id)
-   videos = recordRepository.get_record(db=db, record=record)
-   return {"videos": videos}
+def check_record(user_id: str = Query(...), db: Session = Depends(get_db)):
+    record = db.query(recordModel.Record).filter(recordModel.Record.user_id == user_id).first()
+    if record:
+        return {"videos": record.videos}
+    return {"videos": {}}  # Retorna um dicionário vazio se não houver registro
