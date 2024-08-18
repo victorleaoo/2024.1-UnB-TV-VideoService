@@ -39,3 +39,10 @@ def check_record(user_id: str = Query(...), db: Session = Depends(get_db)):
     if record:
         return {"videos": record.videos}
     return {"videos": {}}  # Retorna um dicionário vazio se não houver registro
+
+@Record.get("/get_tracking_status/")
+def get_tracking_status(user_id: str = Query(...), db: Session = Depends(get_db)):
+    record = db.query(recordModel.Record).filter(recordModel.Record.user_id == user_id).first()
+    if record:
+        return {"track_enabled": record.track_enabled}
+    return {"track_enabled": True}  # Padrão para True se não houver histórico
