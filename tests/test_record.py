@@ -45,13 +45,22 @@ def test_add_to_record(setup_database):
     assert "videos" in response.json()
     assert response.json()["videos"] == {video_id: timestamp}
 
-'''    
-def test_check_record(setup_database):
+def test_get_tracking_status(setup_database):
     user_id = str(uuid.uuid4())
-    video_id = str(uuid.uuid4())
-    timestamp = "2024-08-14 12:00:00"
-    response = client.get("/api/record/get_record/", params={"user_id": user_id})
+
+    # Certificar de que o estado padrão é True (rastreando habilitado)
+    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
     assert response.status_code == 200
-    assert "videos" in response.json()
-    assert response.json()["videos"] == {video_id: timestamp}
-'''
+    assert response.json()["track_enabled"] is True
+
+    # Desabilitar o rastreamento e verificar novamente
+    client.post("/api/record/toggle_tracking/", params={"user_id": user_id, "track": "false"})
+    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
+    assert response.status_code == 200
+    assert response.json()["track_enabled"] is False
+
+    # Habilitar o rastreamento e verificar novamente
+    client.post("/api/record/toggle_tracking/", params={"user_id": user_id, "track": "true"})
+    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
+    assert response.status_code == 200
+    assert response.json()["track_enabled"] is True
