@@ -109,27 +109,3 @@ def test_get_record_sorted(setup_database):
     expected_order = sorted(videos.items(), key=lambda x: x[1], reverse=True)
     sorted_keys = list(sorted_videos.keys())
     assert sorted_keys == [k for k, v in expected_order]  # Checa se está em ordem descendente
-
-
-﻿
-'''
-def test_get_tracking_status(setup_database):
-    user_id = str(uuid.uuid4())
-
-    # Certificar de que o estado padrão é True (rastreando habilitado)
-    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
-    assert response.status_code == 200
-    assert response.json()["track_enabled"] is True
-
-    # Desabilitar o rastreamento e verificar novamente
-    client.post("/api/record/toggle_tracking/", params={"user_id": user_id, "track": "false"})
-    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
-    assert response.status_code == 200
-    assert response.json()["track_enabled"] is False
-
-    # Habilitar o rastreamento e verificar novamente
-    client.post("/api/record/toggle_tracking/", params={"user_id": user_id, "track": "true"})
-    response = client.get("/api/record/get_tracking_status/", params={"user_id": user_id})
-    assert response.status_code == 200
-    assert response.json()["track_enabled"] is True
-    '''
