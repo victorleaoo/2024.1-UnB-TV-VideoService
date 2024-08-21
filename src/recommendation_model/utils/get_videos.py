@@ -38,3 +38,21 @@ def find_all_videos() -> List[IVideo]:
     except ValueError as err:
         print(f"Erro ao processar o JSON: {err}")
         return []
+
+def clean_text(videos: List[IVideo]):
+    html_pattern = re.compile('<.*?>')
+
+    for video in videos:
+        # remover html
+        video.description = re.sub(html_pattern, '', video.description)
+
+        # minusculo
+        video.description = video.description.lower()
+        video.title = video.title.lower()
+        video.catalog = video.catalog.lower()
+
+        # Remover pontuação
+        video.description = video.description.translate(str.maketrans('', '', string.punctuation))
+        video.title = video.title.translate(str.maketrans('', '', string.punctuation))
+
+    return videos
