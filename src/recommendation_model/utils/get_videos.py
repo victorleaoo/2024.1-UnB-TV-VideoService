@@ -75,3 +75,15 @@ def videos_to_dataframe(videos: List[IVideo]) -> pd.DataFrame:
     df = pd.DataFrame(video_dicts)
     
     return df
+
+def add_title_to_file(file_path, title):
+    # Abra o arquivo CSV para leitura e obtenha as linhas existentes
+    with open(file_path, 'r') as file:
+        linhas = file.readlines()
+
+    # Adicione a linha com o título no início da lista de linhas
+    linhas.insert(0, f'TITLE: {title}\n')
+
+    # Escreva todas as linhas de volta no arquivo CSV
+    with open(file_path, 'w') as file:
+        file.writelines(linhas)
