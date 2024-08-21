@@ -46,12 +46,12 @@ if __name__ == "__main__":
 
         # Obtém recomendações
         ##### MODIFICAR NOME DO TITULO #####
-        title = 'Zapping: UnB está entre as três federais mais sustentáveis do país'  # Substitua pelo título desejado
+        title = 'IAgora Entrevista: IA, Ciência de Dados e perspectivas'  # Substitua pelo título desejado
         title = title.lower().translate(str.maketrans('', '', string.punctuation))
         recommendations = get_recommendations(title, cosine_sim, df)
 
         ##### MODIFICAR NOME DO ARQUIVO #####
-        file_path = './model_cosine_sim_results/COSINE_SUSTENTAVEIS_TODOS.csv'
+        file_path = './model_cosine_sim_results/3COSINE_SUSTENTAVEIS_TODOS.csv'
         recommendations.to_csv(file_path)
         add_title_to_file(file_path, title)
 
