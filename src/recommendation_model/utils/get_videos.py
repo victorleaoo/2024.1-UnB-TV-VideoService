@@ -56,3 +56,22 @@ def clean_text(videos: List[IVideo]):
         video.title = video.title.translate(str.maketrans('', '', string.punctuation))
 
     return videos
+
+# Função para transformar a lista de vídeos em um dataframe
+def videos_to_dataframe(videos: List[IVideo]) -> pd.DataFrame:
+    videos = clean_text(videos)
+
+    # Converte a lista de objetos IVideo para uma lista de dicionários
+    video_dicts = [
+        {
+            'ID': video.id,
+            'Título': video.title,
+            'Descrição': video.description,
+            'Categoria': video.catalog
+        }
+        for video in videos
+    ]
+    
+    df = pd.DataFrame(video_dicts)
+    
+    return df
