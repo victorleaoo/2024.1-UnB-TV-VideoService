@@ -16,3 +16,41 @@ def calculate_similarity(df):
     tfidf_matrix = tfidf.fit_transform(df['Descrição'])
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     return cosine_sim
+
+# Obtém uma lista de vídeos recomendados a partir de um título
+def get_recommendations(title, cosine_sim, df):
+    indices = pd.Series(df.index, index=df['Título']).drop_duplicates()
+
+    sim_scores = sorted(list(enumerate(cosine_sim[indices[title]])), key=lambda x: x[1], reverse=True)[1:11] # Pega os 5 melhores
+    
+    video_indices = [i[0] for i in sim_scores]
+    return df.iloc[video_indices]
+
+if __name__ == "__main__":
+    catalog = Catalog()
+    videos = find_all_videos()
+    
+    if videos:
+        # Categorização dos vídeos
+        categorize_videos(videos, catalog)
+        
+        # Cria o DataFrame com as categorias
+        df = videos_to_dataframe(videos)
+        
+        # Calcula a similaridade
+        cosine_sim = calculate_similarity(df)
+        
+        # Obtém recomendações
+        ##### MODIFICAR NOME DO TITULO #####
+        title = 'Doc UnBTV: Greve nas federais' # Substitua pelo título desejado
+        title = title.lower().translate(str.maketrans('', '', string.punctuation))
+        recommendations = get_recommendations(title, cosine_sim, df)
+
+        ##### MODIFICAR NOME DO ARQUIVO #####
+        file_path = './model_cosine_sim_results/COSINE_GREVE_DESC.csv'
+        recommendations.to_csv(file_path)
+        add_title_to_file(file_path, title)
+
+        print("Recomendações:\n", recommendations)
+    else:
+        print("Nenhum vídeo encontrado.")
