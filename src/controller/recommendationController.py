@@ -23,17 +23,22 @@ def get_recommendation_from_record(user_id: str =Query(...) , db: Session = Depe
         videos_recommend = get_recommendations(int(video))
         recommendations.append(videos_recommend)
 
-    for i in range(7):
-        for list_recommendation in recommendations:
-            video = list_recommendation[i]
+    try:
+        for i in range(7):
+            for list_recommendation in recommendations:
+                video = list_recommendation[i]
 
-            if len(final_recommendations) > 20:
-                break
+                if len(final_recommendations) > 20:
+                    break
 
-            if (str(video) not in videos_record) and (video not in final_recommendations):
-                final_recommendations.append(video)
+                if (str(video) not in videos_record) and (video not in final_recommendations):
+                    final_recommendations.append(video)
+    except:
+        print("Não há vídeos recomendados suficientes!")
+        return {"recommend_videos": final_recommendations}
 
     return {"recommend_videos": final_recommendations}
+
 
 @Recommendation.get("/get_recommendation_video")
 def get_recommendation_from_video(video_id: str =Query(...) , db: Session = Depends(get_db)):
