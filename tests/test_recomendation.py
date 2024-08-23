@@ -53,3 +53,22 @@ def test_get_recommendations():
             with patch('pickle.load', return_value=mock_cosine_sim):
                 recommendations = get_recommendations(1)
                 assert recommendations == mock_recommendations
+
+def test_get_recommendation_from_record():
+    # Mock para a função get_recommendations
+    def mock_get_recommendations(video_id):
+        return mock_recommendations_for_video.get(video_id, [])
+
+    # Patch para a função get_recommendations
+    with patch('pandas.read_csv', return_value=mock_df):
+        # Patch para a função open e o carregamento do pickle
+        with patch('builtins.open', mock_open(read_data=pickle.dumps(mock_cosine_sim))):
+            # Mock para o método recordRepository.get_record
+            with patch('repository.recordRepository.get_record', return_value=mock_videos_record):
+                # Patch para a função get_recommendations
+                with patch('recommendation_model.get_video_recommendation.get_recommendations', side_effect=mock_get_recommendations):
+                    response = client.get("/api/recommendation/get_recommendation_record/?user_id=1")
+                    
+                    assert response.status_code == 200 # ok
+                    
+                    assert response.json() == {"recommend_videos": [2, 1, 3, 4, 5]}
