@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from domain import recordSchema
-from model import recordModel
+from src.domain import recordSchema
+from src.model import recordModel
 from fastapi import HTTPException 
 
 def create_record(db: Session, record: recordSchema.RecordCreate, is_create):
