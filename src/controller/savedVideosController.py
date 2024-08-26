@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
-from domain import savedVideosSchema
-from database import get_db
-from repository import savedVideosRepository
+from src.domain import savedVideosSchema
+from src.database import get_db
+from src.repository import savedVideosRepository
 from starlette.responses import JSONResponse
 
 WatchLater = APIRouter(
