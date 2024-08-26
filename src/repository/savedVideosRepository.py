@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from domain import savedVideosSchema
-from model import savedVideosModel
+from src.domain import savedVideosSchema
+from src.model import savedVideosModel
 from fastapi import HTTPException 
 
 def create_watch_later(db: Session, watch_later: savedVideosSchema.WatchLaterCreate):
