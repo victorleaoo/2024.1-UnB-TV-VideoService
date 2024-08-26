@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
 from starlette.responses import JSONResponse
-from domain import recordSchema
-from database import get_db
-from repository import recordRepository
-from model import recordModel
+from src.domain import recordSchema
+from src.database import get_db
+from src.repository import recordRepository
+from src.model import recordModel
 
 Record = APIRouter(
  prefix="/record"
