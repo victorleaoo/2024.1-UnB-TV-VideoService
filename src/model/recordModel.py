@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy import Column, String, JSON, Boolean
-from database import Base
+from src.database import Base
 
 class Record(Base):
    __tablename__ = 'record'
