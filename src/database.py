@@ -18,8 +18,15 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def get_db():
-  db = SessionLocal()
-  try:
-      yield db
-  finally:
-      db.close()
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# Função para inicializar o banco de dados
+def init_db():
+   Base.metadata.create_all(bind=engine)
+
+# Inicializa o banco de dados ao importar este módulo
+init_db()
