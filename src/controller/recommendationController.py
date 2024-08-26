@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from domain import recordSchema
-from database import get_db
-from repository import recordRepository
+from src.domain import recordSchema
+from src.database import get_db
+from src.repository import recordRepository
 
-from recommendation_model.get_video_recommendation import get_recommendations
+from src.recommendation_model.get_video_recommendation import get_recommendations
 
 Recommendation = APIRouter(
     prefix="/recommendation"
