@@ -16,10 +16,10 @@ def get_recommendations(video_id):
     import sys
     print(sys.path)
     
-    with open('/app/src/recommendation_model/cosine_similarity.pkl', 'rb') as f:
+    with open('/var/task/src/recommendation_model/cosine_similarity.pkl', 'rb') as f:
         cosine_sim = pickle.load(f)
 
-    data = load_csv_as_dict('/app/src/recommendation_model/df_videos.csv')
+    data = load_csv_as_dict('/var/task/src/recommendation_model/df_videos.csv')
     id_index = create_indexed_dict(data)
 
     # Verifica se o ID está presente no dicionário
