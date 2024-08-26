@@ -2,14 +2,14 @@ import uvicorn, sys
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db  # Adicione a função de inicialização do banco de dados
+from src.database import init_db  # Adicione a função de inicialização do banco de dados
 
 
 
 load_dotenv()
 
-from controller import commentController, scheduleController, savedVideosController, recordController, recommendationController
-from controller.savedVideosController import WatchLater
+from src.controller import commentController, scheduleController, savedVideosController, recordController, recommendationController
+from src.controller.savedVideosController import WatchLater
 
 
 # Desativado os os comentarios nos videos
