@@ -24,7 +24,7 @@ def get_recommendations(video_id):
 
     # Verifica se o ID está presente no dicionário
     if str(video_id) not in id_index:
-        raise ValueError(f"ID {video_id} não encontrado no dicionário.")
+        return []
 
     # Encontra os índices dos vídeos similares
     sim_scores = sorted(list(enumerate(cosine_sim[id_index[str(video_id)]])), key=lambda x: x[1], reverse=True)[1:8]
